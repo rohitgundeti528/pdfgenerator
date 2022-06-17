@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //for create pdf
                 PdfDocument newpdf = new PdfDocument();
                 Paint mypaint = new Paint();
                 PdfDocument.PageInfo mypageinfo = new PdfDocument.PageInfo.Builder(2000,1414,1).create();
@@ -58,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
                 String name = "Robin Mark Adinson";
                 String product = "Electical Car";
+                //Edittext
                 int amount = 500000;
                 float equity = 2.5f;
+                String pitcher = "rohitrg1522@gmail.com";
                 String Sharkname = "Ashneer Grover";
                 //Writing text from given Strings.
                 mypaint.setTextSize(60f);
@@ -86,13 +89,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 newpdf.close();
                 Toast.makeText(MainActivity.this, "PDF created", Toast.LENGTH_SHORT).show();
+                //pdf created
+                //code for sending mail
+                Intent intentshare = new Intent(Intent.ACTION_SEND);
+                intentshare.setType("application/pdf");
+                intentshare.putExtra(Intent.EXTRA_EMAIL,pitcher);
+                intentshare.putExtra(Intent.EXTRA_SUBJECT,"vShark Certificate");
+                intentshare.putExtra(Intent.EXTRA_TEXT, "looking forward to work with you");
 
-//                Intent intentshare = new Intent(Intent.ACTION_SEND);
-//                intentshare.setType("application/pdf");
-//                intentshare.putExtra(Intent.EXTRA_SUBJECT,"vShark Certificate");
-//                intentshare.putExtra(Intent.EXTRA_TEXT, "looking forward to work with you");
-//
-//                startActivity(Intent.createChooser(intentshare, "Sending file"));
+                startActivity(Intent.createChooser(intentshare, "Sending mail"));
 
             }
         });
